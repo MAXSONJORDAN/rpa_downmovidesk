@@ -1,8 +1,8 @@
 const { default: axios } = require("axios");
-const { clear, } = require("console");
 const fs = require("fs");
 const fsP = require("fs/promises");
 const request = require("request");
+const readline = require('readline');
 
 const itensPorVez = 20;
 
@@ -14,10 +14,10 @@ const start = async () => {
     let baixados = [];
     for (let i = 1; i < total; i += itensPorVez) {
         const log = (baixados) => {
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            process.stdout.write(`(${baixados.length}/${total}) - Baixado` + "- Faixa de " + (i-1) + " Até " + ((i-1) + itensPorVez) + "  " + ((baixados.length / total * 100).toFixed(2)) + "% Concluídos");
-            process.stdout.moveCursor(1000);
+            readline.clearLine(process.stdout, 0);
+            readline.cursorTo(process.stdout, 0, null);
+            process.stdout.write(`(${baixados.length}/${total}) - Baixado` + "- Faixa de " + (i - 1) + " Até " + ((i - 1) + itensPorVez) + "  " + ((baixados.length / total * 100).toFixed(2)) + "% Concluídos");
+            readline.moveCursor(process.stdout, 1000);
         }
         let status = {};
         let timeToTimes = 0;
