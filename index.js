@@ -177,7 +177,10 @@ const calculeTime = (mili, velocidade, total) => {
 }
 const download = (uri, filename) => new Promise((resolve, reject) => {
     request.head(uri, function (err, res, body) {
-        filename = filename.replaceAll("^","").replaceAll("~","").replaceAll("?","").replaceAll("´","").replaceAll("/","");
+        filename = filename.replace("^","").replace("~","").replace("?","").replace("´","").replace("/","").replace("`","");
+        filename = filename.replace("^","").replace("~","").replace("?","").replace("´","").replace("/","").replace("`","");
+        filename = filename.replace("^","").replace("~","").replace("?","").replace("´","").replace("/","").replace("`","");
+        filename = filename.replace("^","").replace("~","").replace("?","").replace("´","").replace("/","").replace("`","");
         request(uri).pipe(fs.createWriteStream(filename)).on('close', () => resolve(err));
     });
 });
