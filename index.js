@@ -3,14 +3,15 @@ const fs = require("fs");
 const fsP = require("fs/promises");
 const request = require("request");
 const readline = require('readline');
+const configs = require('./configs.json');
 
-const itensPorVez = 20;
+const itensPorVez = configs.itensPorVez;
 
 
 const start = async () => {
     console.log("Iniciando Bot");
     console.log("Buscando lista na API...");
-    const total = 573639;
+    const total = configs.totalDeItens;
     let baixados = [];
     for (let i = 1; i < total; i += itensPorVez) {
         const log = (baixados) => {
