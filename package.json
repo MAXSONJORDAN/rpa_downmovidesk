@@ -1,0 +1,17 @@
+{
+  "name": "rpa_downmovidesk",
+  "version": "1.0.0",
+  "description": "Para baixar histórico do moviedesk",
+  "main": "index.js",
+  "repository": "https://github.com/MAXSONJORDAN/rpa_downmovidesk.git",
+  "author": "maxsonjordan <ti.maxson@alcifmais.com.br>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "request": "^2.88.2"
+  }
+}
