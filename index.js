@@ -175,13 +175,25 @@ const calculeTime = (mili, velocidade, total) => {
 
     return `- Termina em ${horas.toFixed(2)}horas`;
 }
+const clearText = (text) => {
+
+    let splitedText = text.split("");
+    let clearSplited = [];
+    for (let i = 0; i < splitedText.length; i++) {
+        const charItem = splitedText[i];
+        if (charItem.match(/^[0-9a-zA-Z.]+$/)) {
+            clearSplited.push(charItem);
+        } else {
+            clearSplited.push('N', 'a', 'C');
+        }
+    }
+    let result = clearSplited.join("");
+    return result;
+}
 const download = (uri, filename) => new Promise((resolve, reject) => {
     request.head(uri, function (err, res, body) {
-        filename = filename.replace("^","").replace("~","").replace("?","").replace("´","").replace("/","").replace("`","");
-        filename = filename.replace("^","").replace("~","").replace("?","").replace("´","").replace("/","").replace("`","");
-        filename = filename.replace("^","").replace("~","").replace("?","").replace("´","").replace("/","").replace("`","");
-        filename = filename.replace("^","").replace("~","").replace("?","").replace("´","").replace("/","").replace("`","");
-        request(uri).pipe(fs.createWriteStream(filename)).on('close', () => resolve(err));
+        let fileNameClean = clearText(filename);
+        request(uri).pipe(fs.createWriteStream(fileNameClean)).on('close', () => resolve(err));
     });
 });
 
