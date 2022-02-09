@@ -82,7 +82,7 @@ const start = async () => {
                                                 for (let j = 0; j < arquivos.length; j++) {
                                                     const arquivo = arquivos[j];
                                                     //console.log("antes de baixar");
-                                                    await download(`https://s3.amazonaws.com/movidesk-files/${arquivo.path}`, path + "/" + arquivo.fileName).then(end => {
+                                                    await download(`https://s3.amazonaws.com/movidesk-files/${arquivo.path}`, path + "/" + clearText(arquivo.fileName)).then(end => {
                                                         //console.log(end)
                                                     });
                                                     //console.log("depois de baixar");
@@ -192,8 +192,7 @@ const clearText = (text) => {
 }
 const download = (uri, filename) => new Promise((resolve, reject) => {
     request.head(uri, function (err, res, body) {
-        let fileNameClean = clearText(filename);
-        request(uri).pipe(fs.createWriteStream(fileNameClean)).on('close', () => resolve(err));
+        request(uri).pipe(fs.createWriteStream(filename)).on('close', () => resolve(err));
     });
 });
 
